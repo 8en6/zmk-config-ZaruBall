@@ -1,7 +1,7 @@
 #include "ZaruBall.dtsi"
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
-// ★修正1: 以下のヘッダーを追加（これが無いと INPUT_REL_X が使えません）
+// 必須: INPUT_REL_X などの定数を使うために必要
 #include <dt-bindings/input/input-event-codes.h>
 
 &xiao_serial { status = "disabled"; };
@@ -43,13 +43,9 @@
         
         smart-sleep; 
 
-        // ★修正2: 軸の中身を具体的に記述（これでエラーが消えます）
-        zephyr,axis-x { 
-            input-codes = <INPUT_REL_X>;
-        };
-        zephyr,axis-y { 
-            input-codes = <INPUT_REL_Y>;
-        };
+        // ★最重要修正: ここを「プロパティ形式」に変更しました
+        zephyr,axis-x = <INPUT_REL_X>;
+        zephyr,axis-y = <INPUT_REL_Y>;
     };
 };
 
