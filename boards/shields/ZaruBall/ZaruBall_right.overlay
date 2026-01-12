@@ -27,23 +27,22 @@
 // ▼▼▼ ここから追加：トラックボールの定義 ▼▼▼
 &xiao_spi {
     status = "okay";
-    cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>; // CSピン (V3.2は通常 D7)
+    cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
 
-    trackball: trackball@0 {
+    // ★修正1: 名前を trackball から right_trackball に変更
+    right_trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
-        // IRQピン (kscanのinterruptと同じD6を指定)
         irq-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        // 自動スリープ有効化
         smart-sleep; 
     };
 };
-// ▲▲▲ 追加ここまで ▲▲▲
 
 &trackball_listener {
     status = "okay";
     compatible = "zmk,input-listener";
-    device = <&trackball>;
+    // ★修正2: 参照先も変更後の名前に合わせる
+    device = <&right_trackball>;
 };
