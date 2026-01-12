@@ -224,9 +224,9 @@
             bindings = <
 &kp ESC    &kp N1  &kp N2      &kp N3    &kp N4     &kp N5                                &kp KP_N7    &kp KP_N8 &kp KP_N9  &kp KP_MINUS               &kp N6  &kp N7  &kp N8     &kp N9   &kp N0    &kp MINUS
 &kp TAB    &kp Q   &kp W       &kp E     &kp R      &kp T                                 &kp KP_N4    &kp KP_N5 &kp KP_N6  &kp KP_PLUS             &kp Y         &kp U   &kp I      &kp O    &kp P     &kp JP_AT
-&kp LSHFT   &kp A   &kp S       &kp D     &kp F      &kp G               &mo RAISE           &kp KP_N1    &kp KP_N2 &kp KP_N3  &kp KP_DOT     &kp JP_YEN   &kp H         &kp J   &kp K      &kp L    &kp SEMI  &kp JP_COLON
-&kp LCTRL  &kp Z   &kp X       &kp C     &kp V      &kp B               &kp JP_LBRACKET         &kp KP_N0 &kp KP_DIVIDE &kp KP_MULTIPLY &kp KP_ENTER      &kp JP_RBRACKET   &kp N         &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp 0x87
-&kp LALT               &kp C_MUTE  &kp LWIN  &lt LOWER INT5  &lt RAISE SPACE  &lt ADJUST INT4                                                           &lt RAISE BSPC  &lt LOWER RET                                            &kp JP_CARET
+&kp LALT   &kp A   &kp S       &kp D     &kp F      &kp G               &mo RAISE           &kp KP_N1    &kp KP_N2 &kp KP_N3  &kp KP_DOT     &kp JP_YEN   &kp H         &kp J   &kp K      &kp L    &kp SEMI  &kp JP_COLON
+&kp LSHFT  &kp Z   &kp X       &kp C     &kp V      &kp B               &kp JP_LBRACKET         &kp KP_N0 &kp KP_DIVIDE &kp KP_MULTIPLY &kp KP_ENTER      &kp JP_RBRACKET   &kp N         &kp M   &kp COMMA  &kp DOT  &kp FSLH  &kp 0x87
+&kp LCTRL               &kp C_MUTE  &kp LWIN  &lt LOWER INT5  &lt RAISE SPACE  &lt ADJUST INT4                                                           &lt RAISE BSPC  &lt LOWER RET                                            &kp JP_CARET
             >;
         };
 
@@ -262,9 +262,9 @@
             bindings = <
 &trans  &kp F1   &kp F2     &kp F3    &kp F4     &kp F5                &trans &trans &trans &trans            &kp F6          &kp F7           &kp F8            &kp F9     &kp F10  &kp F11
 &kp TAB    &none   &none   &none   &none   &none               &trans &trans &trans &trans            &none           &none            &kp UP            &none      &none    &none
-&kp LSHFT  &none   &none   &none   &none   &none   &none   &trans &trans &trans &trans   &kp HOME   &msc SCRL_UP    &kp LEFT         &kp DOWN          &kp RIGHT  &none    &none
-&kp LCTRL  &none   &none   &none   &none   &none   &none   &trans &trans &trans &trans   &kp END    &msc SCRL_DOWN  &msc SCRL_LEFT   &msc SCRL_RIGHT   &none      &none    &none
-&kp LALT           &none  &kp LWIN    &trans     &trans    &trans                                    &trans   &trans                                                        &none
+&kp LALT  &none   &none   &none   &none   &none   &none   &trans &trans &trans &trans   &kp HOME   &msc SCRL_UP    &kp LEFT         &kp DOWN          &kp RIGHT  &none    &none
+&kp LSHFT  &none   &none   &none   &none   &none   &none   &trans &trans &trans &trans   &kp END    &msc SCRL_DOWN  &msc SCRL_LEFT   &msc SCRL_RIGHT   &none      &none    &none
+&kp LCTRL           &none  &kp LWIN    &trans     &trans    &trans                                    &trans   &trans                                                        &none
             >;
         };
 
@@ -274,9 +274,9 @@
             bindings = <
 &trans     &kp F1  &kp F2  &kp F3     &kp F4     &kp F5                       &trans &trans &trans &trans              &kp F6     &kp F7      &kp F8       &kp F9     &kp F10    &kp F11
 &kp TAB  &none  &none  &none      &none      &none                             &trans &trans &trans &trans              &none     &none     &none     &none     &none   &none
-&kp LSHFT  &none   &none   &none      &none      &msc SCRL_UP    &msc SCRL_LEFT    &trans &trans &trans &trans   &kp LC(X)  &kp LC(C)  &mkp LCLK  &mkp LCLK   &mkp RCLK    &none      &none
-&kp LCTRL  &none   &none   &none      &none      &msc SCRL_DOWN  &msc SCRL_RIGHT   &trans &trans &trans &trans   &kp LG(V)  &kp LC(V)  &kp LC(Z)  &kp LC(Y)   &none        &none      &none
-&kp LALT         &none  &trans     &trans     &trans          &trans                                          &kp DEL     &trans                                         &trans
+&kp LALT  &none   &none   &none      &none      &msc SCRL_UP    &msc SCRL_LEFT    &trans &trans &trans &trans   &kp LC(X)  &kp LC(C)  &mkp LCLK  &mkp LCLK   &mkp RCLK    &none      &none
+&kp LSHFT  &none   &none   &none      &none      &msc SCRL_DOWN  &msc SCRL_RIGHT   &trans &trans &trans &trans   &kp LG(V)  &kp LC(V)  &kp LC(Z)  &kp LC(Y)   &none        &none      &none
+&kp LCTRL         &none  &trans     &trans     &trans          &trans                                          &kp DEL     &trans                                         &trans
             >;
         };
 
