@@ -19,9 +19,11 @@
 
 include:
   - board: xiao_ble
-    shield: ZaruBall_left rgbled_adapter
+    # ★修正: ZaruBall_left → zaruball_v2_left に変更
+    shield: zaruball_v2_left rgbled_adapter
   - board: xiao_ble
-    shield: ZaruBall_right rgbled_adapter
+    # ★修正: ZaruBall_right → zaruball_v2_right に変更
+    shield: zaruball_v2_right rgbled_adapter
     snippet: studio-rpc-usb-uart
     cmake-args: -DCONFIG_ZMK_STUDIO=y
   - board: xiao_ble
