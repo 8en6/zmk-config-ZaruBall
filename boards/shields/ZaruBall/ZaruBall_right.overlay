@@ -24,18 +24,22 @@
     interrupt-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 };
 
-// ▼▼▼ ここから追加：トラックボールの定義 ▼▼▼
 &xiao_spi {
     status = "okay";
     cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
 
-    // ★修正1: 名前を trackball から right_trackball に変更
     right_trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
+        
+        // ★修正: 以下の motion-gpios の行を追加してください
+        motion-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        
+        // 念のため irq-gpios も残しておいてOKです
         irq-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
+        
         smart-sleep; 
     };
 };
@@ -43,6 +47,5 @@
 &trackball_listener {
     status = "okay";
     compatible = "zmk,input-listener";
-    // ★修正2: 参照先も変更後の名前に合わせる
     device = <&right_trackball>;
 };
