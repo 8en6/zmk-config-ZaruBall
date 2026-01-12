@@ -20,7 +20,7 @@
         , <&xiao_d 4 GPIO_ACTIVE_LOW> // M5
         , <&xiao_d 5 GPIO_ACTIVE_LOW> // M6
         ;
-    // トラックボールの割り込みピン (V3.2は通常 D6)
+    // トラックボールの割り込みピン
     interrupt-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 };
 
@@ -28,19 +28,23 @@
     status = "okay";
     cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
 
+    // 名前重複回避のため right_trackball に変更済み
     right_trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
-        
-        // ★修正: 以下の motion-gpios の行を追加してください
+
+        // ★修正1: motion-gpios を追加 (必須項目)
         motion-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        
-        // 念のため irq-gpios も残しておいてOKです
+        // 念のため irq-gpios も残す
         irq-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         
         smart-sleep; 
+
+        // ★修正2: 軸の設定を追加 (今回のエラーの原因)
+        zephyr,axis-x { };
+        zephyr,axis-y { };
     };
 };
 
