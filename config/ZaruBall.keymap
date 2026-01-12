@@ -48,20 +48,17 @@
 // スクロール量の設定
 // #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
-// トラックボールの設定
 &trackball_listener {
     input-processors =  <
-                         // 【修正案】Y軸のみ反転させる
-                         &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
-                        >;
+        &zip_xy_transform 0  // V3.2用にリセット
+    >;
     scroller {
         layers = <SCROLL ADJUST>;
         input-processors = <
-                            // スクロールも同様にY軸のみ反転
-                            &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
-                            &zip_xy_scaler 1 20 
-                            &zip_xy_to_scroll_mapper
-                            >;
+            &zip_xy_transform 0  // スクロールもリセット
+            &zip_xy_scaler 1 20
+            &zip_xy_to_scroll_mapper
+        >;
     };
 };
 
