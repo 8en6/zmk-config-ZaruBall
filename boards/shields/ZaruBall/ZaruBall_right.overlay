@@ -1,6 +1,8 @@
 #include "ZaruBall.dtsi"
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
+// ★修正1: 以下のヘッダーを追加（これが無いと INPUT_REL_X が使えません）
+#include <dt-bindings/input/input-event-codes.h>
 
 &xiao_serial { status = "disabled"; };
 
@@ -11,7 +13,7 @@
 };
 
 &kscan0 {
-    // V3.2に合わせて ACTIVE_LOW に変更
+    // V3.2に合わせて ACTIVE_LOW
     gpios
         = <&xiao_d 0 GPIO_ACTIVE_LOW> // M1
         , <&xiao_d 1 GPIO_ACTIVE_LOW> // M2
@@ -28,24 +30,26 @@
     status = "okay";
     cs-gpios = <&xiao_d 7 GPIO_ACTIVE_LOW>;
 
-    // 名前重複回避のため right_trackball に変更済み
     right_trackball: trackball@0 {
         status = "okay";
         compatible = "pixart,pmw3610";
         reg = <0>;
         spi-max-frequency = <2000000>;
 
-        // ★修正1: motion-gpios を追加 (必須項目)
+        // 必須設定: 動き検知ピン
         motion-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        // 念のため irq-gpios も残す
+        // 念のため irq も残す
         irq-gpios = <&xiao_d 6 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
         
         smart-sleep; 
 
-        // ★修正2: 軸の設定を追加 (今回のエラーの原因)
-        // 中身は空で構いませんが、この定義が必要です
-        zephyr,axis-x { };
-        zephyr,axis-y { };
+        // ★修正2: 軸の中身を具体的に記述（これでエラーが消えます）
+        zephyr,axis-x { 
+            input-codes = <INPUT_REL_X>;
+        };
+        zephyr,axis-y { 
+            input-codes = <INPUT_REL_Y>;
+        };
     };
 };
 
