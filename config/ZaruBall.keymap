@@ -8,42 +8,12 @@
 #include <input/processors.dtsi>
 #include <dt-bindings/zmk/input_transform.h>
 
-// -------------------------------------------------------------------------
-// JIS変換定義 (OSが日本語配列設定の場合の出力マッピング)
-// -------------------------------------------------------------------------
-#define JP_AT           LBKT             // @ (USの [ キー)
-#define JP_CARET        EQUAL            // ^ (USの = キー)
-#define JP_YEN          INT3             // ¥ (JISの ¥ キー)
-#define JP_PIPE         LS(INT3)         // | (Shift + ¥)
-#define JP_COLON        SQT              // : (USの ' キー)
-#define JP_LBRACKET     RBKT             // [ (USの ] キー)
-#define JP_RBRACKET     NUHS             // ] (USの \ キー / Non-US #)
-#define JP_UNDERSCORE   LS(INT1)         // _ (Shift + Ro)
-#define JP_BACKSLASH    INT1             // \ (Roキー)
-
-// Shiftが必要な記号
-#define JP_DQUOTE       LS(N2)           // "
-#define JP_AMPERSAND    LS(N6)           // &
-#define JP_QUOTE        LS(N7)           // '
-#define JP_LPAREN       LS(N8)           // (
-#define JP_RPAREN       LS(N9)           // )
-#define JP_EQUAL        LS(MINUS)        // =
-#define JP_PLUS         LS(SEMI)         // +
-#define JP_ASTERISK     LS(SQT)          // *
-#define JP_TILD         LS(EQUAL)        // ~
-#define JP_GRAVE        LS(LBKT)         // `
-#define JP_LBRACE       LS(RBKT)         // {
-#define JP_RBRACE       LS(NUHS)         // }
-
-// -------------------------------------------------------------------------
-// レイヤー定義
-// -------------------------------------------------------------------------
 #define BASE 0
 #define LOWER 1
 #define RAISE 2
 #define ADJUST 3
 #define MOUSE 4
-#define SCROLL 6
+#define SCROLL 1
 
 // スクロール量の設定
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
@@ -53,10 +23,10 @@
     input-processors =  <
                         // トラックボールの向きの変更(ZaruBallv1とv2,v3ではセンサーの向きが異なるので調整してください。デフォルトではv2,v3用)
                          &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_Y_INVERT | INPUT_TRANSFORM_X_INVERT)
-                         // &zip_temp_layer MOUSE 500 // 500ms stay at mouse layer
+                         &zip_temp_layer MOUSE 500 // 500ms stay at mouse layer
                         >;
     scroller {
-        layers = <SCROLL ADJUST>;
+        layers = <SCROLL>;
         input-processors = <
                             // スクロールの向きの変更
                             &zip_xy_transform (INPUT_TRANSFORM_XY_SWAP | INPUT_TRANSFORM_X_INVERT)
@@ -154,39 +124,37 @@
 
         base_layer {
             display-name = "Base";
-            sensor-bindings = <&scroll_down_up>
+            sensor-bindings = <&scroll_down_up>;
             bindings = <
-&kp ESC    &kp N1  &kp N2      &kp N3    &kp N4     &kp N5                                               &kp N6  &kp N7  &kp N8      &kp N9   &kp N0     &kp MINUS
-&kp TAB    &kp Q   &kp W       &kp E     &kp R      &kp T                                                &kp Y   &kp U   &kp I       &kp O    &kp P      &kp JP_AT
-&kp LSHFT  &kp A   &kp S       &kp D     &kp F      &kp G      &mo RAISE            &kp JP_YEN           &kp H   &kp J   &lt RAISE K &kp L    &kp SEMI   &kp JP_COLON
-&kp LCTRL  &kp Z   &kp X       &kp C     &kp V      &kp B      &kp JP_LBRACKET      &kp JP_RBRACKET      &kp N   &kp M   &kp COMMA   &kp DOT  &kp FSLH   &kp 0x87
-&LALT      &kp C_MUTE  &kp LWIN  &lt LOWER INT5  &lt RAISE SPACE  &lt ADJUST INT4            &lt RAISE BSPC     &lt LOWER RET                            &kp JP_CARET
+&kp ESC    &kp N1  &kp N2      &kp N3    &kp N4     &kp N5                       &kp NUMBER_6  &kp N7    &kp N8  &kp N9     &kp N0   &kp MINUS
+&kp TAB    &kp Q   &kp W       &kp E     &kp R      &kp T                        &kp Y         &kp U     &kp I   &kp O      &kp P    &kp EQUAL
+&kp CAPS   &kp A   &kp S       &kp D     &kp F      &kp G      &kp INS           &kp LBKT      &kp H     &kp J   &kp K      &kp L    &kp SEMI   &kp SQT
+&kp LSHFT  &kp Z   &kp X       &kp C     &kp V      &kp B      &kp GRAVE         &kp RBKT      &kp N     &kp M   &kp COMMA  &kp DOT  &kp FSLH   &lt SCROLL BACKSLASH
+&td0               &kp C_MUTE  &kp LWIN  &kp LCTRL  &kp SPACE  &to_scroll_layer  &lt 2 RET     &kp BSPC                              &td1
             >;
         };
 
         lower_layer {
             display-name = "Lower";
-            // 時計回り: 拡大 (Ctrl + テンキーの+)
-            // 反時計回り: 縮小 (Ctrl + テンキーの-)
-            sensor-bindings = <&inc_dec_kp LC(KP_PLUS) LC(KP_MINUS)>;
+            sensor-bindings = <&inc_dec_kp RIGHT LEFT>;
             bindings = <
-&trans     &kp F1  &kp F2  &kp F3  &kp F4  &kp F5                      &kp F6          &kp F7           &kp F8            &kp F9     &kp F10  &kp F11
-&kp TAB    &none   &none   &none   &none   &none                       &none           &none            &kp UP            &none      &none    &none
-&kp LSHFT  &none   &none   &none   &none   &none   &none    &kp HOME   &msc SCRL_UP    &kp LEFT         &kp DOWN          &kp RIGHT  &none    &none
-&kp LCTRL  &none   &none   &none   &none   &none   &none    &kp END    &msc SCRL_DOWN  &msc SCRL_LEFT   &msc SCRL_RIGHT   &none      &none    &none
-&LALT           &none  &kp LWIN    &trans     &trans    &trans     &trans      &trans                                 &none
+&trans  &kp F1   &kp F2     &kp F3    &kp F4     &kp F5               &kp LA(F2)  &kp KP_N7     &kp KP_N8   &kp KP_N9  &kp KP_SLASH     &kp KP_NUMLOCK
+&trans  &kp F6   &kp F7     &kp F8    &kp F9     &kp F10              &kp LA(F1)  &kp KP_N4     &kp KP_N5   &kp KP_N6  &kp KP_MULTIPLY  &none
+&trans  &kp F11  &kp F12    &kp UP    &none      &kp HOME  &kp PG_UP  &kp LPAR    &kp C_VOL_UP  &kp KP_N1   &kp KP_N2  &kp KP_N3        &kp KP_MINUS    &none
+&trans  &none    &kp LEFT   &kp DOWN  &kp RIGHT  &kp END   &kp PG_DN  &kp RPAR    &kp C_VOL_DN  &kp KP_DOT  &kp KP_N0  &kp KP_EQUAL     &kp KP_PLUS     &none
+&trans           &kp RSHFT  &trans    &trans     &trans    &trans     &trans      &kp DEL                                               &studio_unlock
             >;
         };
 
         raise_layer {
             display-name = "Raise";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp LA(F2) LA(F1)>;
             bindings = <
-&trans     &kp F1  &kp F2  &kp F3     &kp F4     &kp F5                                      &kp F6     &kp F7      &kp F8       &kp F9     &kp F10    &kp F11
-&kp TAB    &none   &none   &none      &none      &none                                       &none      &none       &none        &none      &none      &none
-&kp LSHFT  &none   &none   &none      &none      &msc SCRL_UP    &msc SCRL_LEFT   &kp LC(X)  &kp LC(C)  &mkp LCLK  &mkp LCLK   &mkp RCLK    &none      &none
-&kp LCTRL  &none   &none   &none      &none      &msc SCRL_DOWN  &msc SCRL_RIGHT  &kp LG(V)  &kp LC(V)  &kp LC(Z)  &kp LC(Y)   &none        &none      &none
-&LALT         &none  &trans     &trans     &trans          &trans           &kp DEL     &trans                                 &none
+&trans  &none  &none  &none      &none      &none                            &none      &none     &none     &none     &none      &none
+&trans  &none  &none  &none      &none      &none                            &none      &none     &none     &none     &none      &none
+&trans  &none  &none  &mkp RCLK  &mkp LCLK  &msc SCRL_UP    &msc SCRL_LEFT   &kp PG_UP  &kp HOME  &none     &kp UP    &none      &none   &none
+&trans  &none  &none  &mkp MB4   &mkp MB5   &msc SCRL_DOWN  &msc SCRL_RIGHT  &kp PG_DN  &kp END   &kp LEFT  &kp DOWN  &kp RIGHT  &none   &none
+&trans         &none  &trans     &trans     &trans          &trans           &trans     &kp DEL                                  &trans
             >;
         };
 
@@ -194,11 +162,11 @@
             display-name = "Adjust";
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             bindings = <
-&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                          &bt BT_CLR_ALL  &none       &none  &none      &none   &none
-&trans  &none         &none         &none         &none         &none                                 &bt BT_CLR      &none       &none  &none      &none   &none
-&trans  &none         &none         &none         &none         &none         &none      &ind_bat     &out OUT_TOG    &mkp LCLK   &none  &mkp RCLK  &none   &none
-&trans  &none         &none         &none         &none         &none         &none      &ind_con     &studio_unlock  &none       &none  &none      &none   &none
-&trans                &kp C_MUTE    &trans        &trans        &trans        &trans     &trans       &trans                              &trans
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4          &bt BT_CLR_ALL  &none           &none  &none  &none  &none
+&trans  &none         &none         &none         &none         &none                 &bt BT_CLR      &none           &none  &none  &none  &none
+&trans  &none         &none         &none         &none         &none         &none   &ind_bat        &out OUT_TOG    &none  &none  &none  &none   &none
+&trans  &none         &none         &none         &none         &none         &none   &ind_con        &studio_unlock  &none  &none  &none  &none   &none
+&trans                &kp C_MUTE    &trans        &trans        &trans        &trans  &trans          &kp DEL                              &trans
             >;
         };
 
@@ -209,8 +177,8 @@
 &to_layer_0 ESC             &to_layer_0 N1  &to_layer_0 N2  &to_layer_0 N3  &to_layer_0 N4      &to_layer_0 N5                   &to_layer_0 N6   &to_layer_0 N7  &to_layer_0 N8  &to_layer_0 N9  &to_layer_0 N0      &to_layer_0 MINUS
 &to_layer_0 TAB             &to_layer_0 Q   &to_layer_0 W   &to_layer_0 E   &to_layer_0 R       &to_layer_0 T                    &to_layer_0 Y    &to_layer_0 U   &to_layer_0 I   &to_layer_0 O   &to_layer_0 P       &to_layer_0 EQUAL
 &to_layer_0 CAPS            &to_layer_0 A   &mkp RCLK       &mkp MCLK       &mkp_exit_AML LCLK  &msc SCRL_UP    &msc SCRL_LEFT   &msc SCRL_LEFT   &msc SCRL_UP    &mkp LCLK       &mkp MCLK       &mkp RCLK           &to_layer_0 SINGLE_QUOTE  &to_layer_0 SEMICOLON
-&to_layer_0 LSHIFT          &to_layer_0 Z   &to_layer_0 X   &mkp MB4        &mkp MB5            &msc SCRL_DOWN  &msc SCRL_RIGHT  &msc SCRL_RIGHT  &msc SCRL_DOWN  &mkp MB4        &mkp MB5        &to_layer_0 PERIOD  &to_layer_0 SLASH         &trans
-&to_scroll_layer                  &trans          &trans          &trans              &trans          &trans           &trans           &trans                                                              &trans
+&to_layer_0 LSHIFT          &to_layer_0 Z   &to_layer_0 X   &mkp MB4        &mkp MB5            &msc SCRL_DOWN  &msc SCRL_RIGHT  &msc SCRL_RIGHT  &msc SCRL_DOWN  &mkp MB4        &mkp MB5        &to_layer_0 PERIOD  &to_layer_0 SLASH         &mt
+&to_scroll_layer BACKSLASH                  &trans          &trans          &trans              &trans          &trans           &trans           &trans                                                              &trans
             >;
         };
 
