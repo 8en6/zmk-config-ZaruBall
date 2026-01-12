@@ -46,7 +46,7 @@
 #define SCROLL 6
 
 // スクロール量の設定
-#define ZMK_POINTING_DEFAULT_SCRL_VAL 100
+// #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
 // トラックボールの設定(AML, SCROLL)
 &trackball_listener {
@@ -160,7 +160,7 @@
 &kp TAB    &kp Q   &kp W       &kp E     &kp R      &kp T                                                &kp Y   &kp U   &kp I       &kp O    &kp P      &kp JP_AT
 &kp LSHFT  &kp A   &kp S       &kp D     &kp F      &kp G      &mo RAISE            &kp JP_YEN           &kp H   &kp J   &lt RAISE K &kp L    &kp SEMI   &kp JP_COLON
 &kp LCTRL  &kp Z   &kp X       &kp C     &kp V      &kp B      &kp JP_LBRACKET      &kp JP_RBRACKET      &kp N   &kp M   &kp COMMA   &kp DOT  &kp FSLH   &kp 0x87
-&LALT      &kp C_MUTE  &kp LWIN  &lt LOWER INT5  &lt RAISE SPACE  &lt ADJUST INT4            &lt RAISE BSPC     &lt LOWER RET                            &kp JP_CARET
+&kp LALT      &kp C_MUTE  &kp LWIN  &lt LOWER INT5  &lt RAISE SPACE  &lt ADJUST INT4            &lt RAISE BSPC     &lt LOWER RET                            &kp JP_CARET
             >;
         };
 
@@ -174,7 +174,7 @@
 &kp TAB    &none   &none   &none   &none   &none                       &none           &none            &kp UP            &none      &none    &none
 &kp LSHFT  &none   &none   &none   &none   &none   &none    &kp HOME   &msc SCRL_UP    &kp LEFT         &kp DOWN          &kp RIGHT  &none    &none
 &kp LCTRL  &none   &none   &none   &none   &none   &none    &kp END    &msc SCRL_DOWN  &msc SCRL_LEFT   &msc SCRL_RIGHT   &none      &none    &none
-&LALT           &none  &kp LWIN    &trans     &trans    &trans     &trans      &trans                                 &none
+&kp LALT           &none  &kp LWIN    &trans     &trans    &trans     &trans      &trans                                 &none
             >;
         };
 
@@ -186,7 +186,7 @@
 &kp TAB    &none   &none   &none      &none      &none                                       &none      &none       &none        &none      &none      &none
 &kp LSHFT  &none   &none   &none      &none      &msc SCRL_UP    &msc SCRL_LEFT   &kp LC(X)  &kp LC(C)  &mkp LCLK  &mkp LCLK   &mkp RCLK    &none      &none
 &kp LCTRL  &none   &none   &none      &none      &msc SCRL_DOWN  &msc SCRL_RIGHT  &kp LG(V)  &kp LC(V)  &kp LC(Z)  &kp LC(Y)   &none        &none      &none
-&LALT         &none  &trans     &trans     &trans          &trans           &kp DEL     &trans                                 &none
+&kp LALT         &none  &trans     &trans     &trans          &trans           &kp DEL     &trans                                 &none
             >;
         };
 
