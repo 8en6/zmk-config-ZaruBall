@@ -48,7 +48,7 @@
 #define RAISE    4
 #define ADJUST   5
 #define MOD      6
-#define SCROLL   5
+#define SCROLL   3
 
 // スクロール量の設定
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
