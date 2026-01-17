@@ -1,4 +1,4 @@
-//#include <dt-bindings/zmk/mouse.h>
+    //#include <dt-bindings/zmk/mouse.h>
 
 #include <behaviors/rgbled_widget.dtsi>
 #include <behaviors.dtsi>
@@ -123,6 +123,14 @@
 
             display-name = "ht-BL_mod";
         };
+        // ▼▼▼ ここから追加 ▼▼▼
+        rot_zoom: sensor_rotate_zoom {
+            compatible = "zmk,behavior-sensor-rotate";
+            #sensor-binding-cells = <0>;
+            bindings = <&zoom_in>, <&zoom_out>;
+            tap-ms = <20>; 
+        };
+        // ▲▲▲ ここまで追加 ▲▲▲
     };
 };
 
@@ -194,6 +202,26 @@
             #binding-cells = <0>;
             bindings = <&macro_tap &kp LANG2 &to BASE>;
         };
+
+        // ▼▼▼ ここから追加 ▼▼▼
+        zoom_in: zoom_in {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &msc SCRL_UP>
+                , <&macro_release &kp LCTRL>;
+        };
+
+        zoom_out: zoom_out {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LCTRL>
+                , <&macro_tap &msc SCRL_DOWN>
+                , <&macro_release &kp LCTRL>;
+        };
+        // ▲▲▲ ここまで追加 ▲▲▲
     };
 
     combos {
@@ -232,9 +260,8 @@
 
         naginata_layer {
             display-name = "Naginata";
-            // 時計回り: 拡大 (Ctrl + テンキーの+)
-            // 反時計回り: 縮小 (Ctrl + テンキーの-)
-            sensor-bindings = <&inc_dec_kp LC(KP_PLUS) LC(KP_MINUS)>;
+            // ▼ 修正: 作成した rot_zoom を割り当て
+            sensor-bindings = <&rot_zoom>;
             bindings = <
 &trans  &kp F1   &kp F2     &kp F3    &kp F4     &kp F5                &trans &trans &trans &trans            &kp F6          &kp F7           &kp F8            &kp F9     &kp F10  &kp F11
 &kp TAB    &none   &none   &none   &none   &none               &trans &trans &trans &trans            &none           &none            &kp UP            &none      &none    &none
