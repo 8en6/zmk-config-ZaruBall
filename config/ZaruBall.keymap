@@ -54,13 +54,13 @@
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
 
 &trackball_listener {
-    input-processors = <&zip_xy_scaler 1 1>;
+    input-processors = <&zip_xy_scaler 2 3>;
 
     scroller {
         layers = <SCROLL>;
         input-processors = <
                             &zip_xy_transform INPUT_TRANSFORM_Y_INVERT
-                            &zip_xy_scaler 1 20
+                            &zip_xy_scaler 1 40
                             &zip_xy_to_scroll_mapper
                             >;
     };
@@ -83,7 +83,7 @@
         scroll_down_up: behavior_sensor_rotate_mouse_wheel_down_up {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&msc SCRL_DOWN>, <&msc SCRL_UP>;
+            bindings = <&msc SCRL_UP>, <&msc SCRL_DOWN>;
             tap-ms = <20>; // スクロールのタップ時間
         };
 
@@ -127,7 +127,7 @@
         rot_zoom: sensor_rotate_zoom {
             compatible = "zmk,behavior-sensor-rotate";
             #sensor-binding-cells = <0>;
-            bindings = <&zoom_in>, <&zoom_out>;
+            bindings = <&zoom_out>, <&zoom_in>;
             tap-ms = <20>; 
         };
         // ▲▲▲ ここまで追加 ▲▲▲
@@ -264,8 +264,8 @@
             sensor-bindings = <&rot_zoom>;
             bindings = <
 &trans  &kp F1   &kp F2     &kp F3    &kp F4     &kp F5                &trans &trans &trans &trans            &kp F6          &kp F7           &kp F8            &kp F9     &kp F10  &kp F11
-&kp TAB    &none   &none   &kp LG(UP)   &none   &none               &trans &trans &trans &trans            &kp LWIN            &kp TAB            &kp UP            &none      &none    &none
-&kp LALT  &none   &kp LG(LEFT)   &kp LG(DOWN)   &kp LG(RIGHT)   &none   &none   &trans &trans &trans &trans   &kp HOME   &msc SCRL_UP    &kp LEFT         &kp DOWN          &kp RIGHT  &none    &none
+&kp TAB    &none   &none   &kp LC(LS(UP))   &none   &none               &trans &trans &trans &trans            &kp LWIN            &kp TAB            &kp UP            &none      &none    &none
+&kp LALT  &none   &kp LC(LS(LEFT))   &kp LC(LS(DOWN))   &kp LC(LS(RIGHT))   &none   &none   &trans &trans &trans &trans   &kp HOME   &msc SCRL_UP    &kp LEFT         &kp DOWN          &kp RIGHT  &none    &none
 &kp LSHFT  &none   &none   &none   &none   &none   &none   &trans &trans &trans &trans   &kp END    &msc SCRL_DOWN  &msc SCRL_LEFT   &msc SCRL_RIGHT   &none      &none    &none
 &kp LCTRL           &none  &kp LWIN    &trans     &trans    &trans                                    &trans   &kp RET                                                        &none
             >;
@@ -285,7 +285,7 @@
 
         lower_layer {
             display-name = "Lower";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
             bindings = <
 &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4           &trans &trans &trans &trans            &bt BT_CLR_ALL  &none  &none  &none  &none  &none
 &trans  &none         &none         &none         &none         &none                  &trans &trans &trans &trans            &bt BT_CLR      &none  &none  &none  &none  &none
@@ -297,7 +297,7 @@
 
         raise_layer {
             display-name = "Raise";
-            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            sensor-bindings = <&inc_dec_kp C_VOL_DN C_VOL_UP>;
             bindings = <
 &trans     &kp F1  &kp F2  &kp F3     &kp F4     &kp F5                       &trans &trans &trans &trans              &kp F6     &kp F7      &kp F8       &kp F9     &kp F10    &kp F11
 &kp TAB  &none  &none  &none      &none      &none                             &trans &trans &trans &trans              &none     &none     &none     &none     &none   &none
@@ -309,9 +309,7 @@
 
         adjust_layer {
             display-name = "Adjust";
-            // 時計回り: 拡大 (Ctrl + テンキーの+)
-            // 反時計回り: 縮小 (Ctrl + テンキーの-)
-            sensor-bindings = <&inc_dec_kp LC(KP_PLUS) LC(KP_MINUS)>;
+            sensor-bindings = <&inc_dec_kp LC(KP_MINUS) LC(KP_PLUS)>;
             bindings = <
 &trans  &kp F1   &kp F2     &kp F3    &kp F4     &kp F5                &trans &trans &trans &trans            &kp F6          &kp F7           &kp F8            &kp F9     &kp F10  &kp F11
 &kp TAB    &none   &none   &none   &none   &none               &trans &trans &trans &trans            &none           &none            &kp UP            &none      &none    &none
