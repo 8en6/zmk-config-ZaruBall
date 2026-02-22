@@ -263,10 +263,10 @@
             // ▼ 修正: 作成した rot_zoom を割り当て
             sensor-bindings = <&rot_zoom>;
             bindings = <
-&trans     &kp F1  &kp F2             &kp F3            &kp F4            &kp F5              &trans &trans &trans &trans             &kp F6          &kp F7           &kp F8            &kp F9         &kp F10  &kp F11
-&kp TAB    &none   &none              &kp LC(LS(UP))    &msc SCRL_UP      &none               &trans &trans &trans &trans             &none           &kp LS(UP)       &kp UP            &none          &none    &none
-&kp LALT   &none   &kp LC(LS(LEFT))   &kp LC(LS(DOWN))  &kp LC(LS(RIGHT)) &kp HOME &none      &trans &trans &trans &trans   &none     &kp HOME        &kp LEFT         &kp DOWN          &kp RIGHT      &none    &none
-&kp LSHFT  &none   &msc SCRL_LEFT     &msc SCRL_DOWN    &msc SCRL_RIGHT   &kp END  &none      &trans &trans &trans &trans   &none     &kp END         &kp LS(LEFT)     &kp LS(DOWN)      &kp LS(RIGHT)  &none    &none
+&trans     &kp F1  &kp F2             &kp F3            &kp F4            &kp F5                      &trans &trans &trans &trans             &kp F6          &kp F7           &kp F8            &kp F9         &kp F10  &kp F11
+&kp TAB    &none   &none              &kp LC(LS(UP))    &msc SCRL_UP      &none                       &trans &trans &trans &trans             &none           &kp LS(UP)       &kp UP            &none          &none    &none
+&kp LALT   &none   &kp LC(LS(LEFT))   &kp LC(LS(DOWN))  &kp LC(LS(RIGHT)) &kp HOME &kp LG(LS(C))      &trans &trans &trans &trans   &none     &kp HOME        &kp LEFT         &kp DOWN          &kp RIGHT      &none    &none
+&kp LSHFT  &none   &msc SCRL_LEFT     &msc SCRL_DOWN    &msc SCRL_RIGHT   &kp END  &none              &trans &trans &trans &trans   &none     &kp END         &kp LS(LEFT)     &kp LS(DOWN)      &kp LS(RIGHT)  &none    &none
 &kp LCTRL           &none  &kp LWIN    &trans     &trans    &trans                                                                        &trans   &kp LA(ENTER)                                                         &none
             >;
         };
@@ -287,10 +287,10 @@
             display-name = "Lower";
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             bindings = <
-&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4           &trans &trans &trans &trans            &bt BT_CLR_ALL  &none  &none  &none  &none  &none
-&trans  &none         &none         &none         &none         &none                  &trans &trans &trans &trans            &bt BT_CLR      &none  &none  &none  &none  &none
-&trans  &none         &none         &none         &none         &none         &none    &trans &trans &trans &trans   &ind_bat &out OUT_TOG    &mkp LCLK  &none  &mkp RCLK  &none  &none
-&trans  &none         &none         &none         &none         &none         &none    &trans &trans &trans &trans   &ind_con &studio_unlock  &none  &none  &none  &none  &none
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                   &trans &trans &trans &trans            &bt BT_CLR_ALL  &none  &none  &none  &none  &none
+&trans  &none         &none         &none         &none         &none                          &trans &trans &trans &trans            &bt BT_CLR      &none  &none  &none  &none  &none
+&trans  &none         &none         &none         &none         &none         &kp LG(LS(S))    &trans &trans &trans &trans   &ind_bat &out OUT_TOG    &mkp LCLK  &none  &mkp RCLK  &none  &none
+&trans  &none         &none         &none         &none         &none         &none            &trans &trans &trans &trans   &ind_con &studio_unlock  &none  &none  &none  &none  &none
 &trans                &kp C_MUTE    &trans        &trans        &trans        &trans                                 &trans   &kp LC(ENTER)                                     &trans
             >;
         };
@@ -299,10 +299,10 @@
             display-name = "Raise";
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             bindings = <
-&trans    &kp F1  &kp F2  &kp F3         &kp F4         &kp F5                    &trans &trans &trans &trans              &kp F6     &kp F7      &kp F8       &kp F9     &kp F10    &kp F11
-&kp TAB   &none   &none   &none          &kp LC(UP)     &none                     &trans &trans &trans &trans              &none     &none     &none     &none     &none   &none
-&kp LALT  &none   &none   &kp LC(LEFT)   &kp LC(DOWN)   &kp LC(RIGHT)    &none    &trans &trans &trans &trans   &kp LC(X)  &kp LC(C)  &mkp LCLK  &mkp RCLK   &mkp RCLK    &none      &none
-&kp LSHFT &none   &none   &none          &none          &none            &none    &trans &trans &trans &trans   &kp LG(V)  &kp LC(V)  &kp LC(Z)  &kp LC(Y)   &none        &none      &none
+&trans    &kp F1  &kp F2  &kp F3         &kp F4         &kp F5                            &trans &trans &trans &trans              &kp F6     &kp F7      &kp F8       &kp F9     &kp F10    &kp F11
+&kp TAB   &none   &none   &none          &kp LC(UP)     &kp LG(UP)                        &trans &trans &trans &trans              &none     &none     &none     &none     &none   &none
+&kp LALT  &none   &none   &kp LC(LEFT)   &kp LC(DOWN)   &kp LC(RIGHT)    &kp LG(LC(T))    &trans &trans &trans &trans   &kp LC(X)  &kp LC(C)  &mkp LCLK  &mkp RCLK   &mkp RCLK    &none      &none
+&kp LSHFT &none   &none   &kp LG(LEFT)   &kp LG(DOWN)   &kp LG(RIGHT)    &none            &trans &trans &trans &trans   &kp LG(V)  &kp LC(V)  &kp LC(Z)  &kp LC(Y)   &none        &none      &none
 &kp LCTRL         &none  &trans     &trans     &trans          &trans                                          &kp DEL     &kp LS(ENTER)                                         &trans
             >;
         };
