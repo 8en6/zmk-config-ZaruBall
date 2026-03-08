@@ -38,9 +38,6 @@
 #define JP_LBRACE       LS(RBKT)         // {
 #define JP_RBRACE       LS(NUHS)         // }
 
-#define C_AC_PAN_LEFT  (ZMK_HID_USAGE(HID_USAGE_CONSUMER, 0x0236))
-#define C_AC_PAN_RIGHT (ZMK_HID_USAGE(HID_USAGE_CONSUMER, 0x0237))
-
 // -------------------------------------------------------------------------
 // レイヤー定義
 // -------------------------------------------------------------------------
@@ -269,9 +266,9 @@
             sensor-bindings = <&rot_zoom>;
             bindings = <
 &trans     &kp F1  &kp F2               &kp F3            &kp F4              &kp F5                      &trans &trans &trans &trans             &kp F6          &kp F7           &kp F8            &kp F9         &kp F10  &kp F11
-&kp TAB    &none   &none                &kp LC(LS(UP))    &msc SCRL_UP        &none                       &trans &trans &trans &trans             &none           &kp LS(UP)       &kp UP            &none          &none    &none
+&kp TAB    &none   &none                &kp LC(LS(UP))    &kp PG_UP           &none                       &trans &trans &trans &trans             &none           &kp LS(UP)       &kp UP            &none          &none    &none
 &kp LALT   &none   &kp LC(LS(LEFT))     &kp LC(LS(DOWN))  &kp LC(LS(RIGHT))   &kp HOME &kp LG(LS(C))      &trans &trans &trans &trans   &none     &kp HOME        &kp LEFT         &kp DOWN          &kp RIGHT      &none    &none
-&kp LSHFT  &none   &kp C_AC_PAN_LEFT    &msc SCRL_DOWN    &kp C_AC_PAN_RIGHT  &kp END  &none              &trans &trans &trans &trans   &none     &kp END         &kp LS(LEFT)     &kp LS(DOWN)      &kp LS(RIGHT)  &none    &none
+&kp LSHFT  &none   &kp LA(PG_UP)        &kp PG_DN         &kp LA(PG_DN)  &kp END  &none              &trans &trans &trans &trans   &none     &kp END         &kp LS(LEFT)     &kp LS(DOWN)      &kp LS(RIGHT)  &none    &none
 &kp LCTRL           &none  &kp LWIN    &trans     &trans    &trans                                                                        &trans   &kp LA(ENTER)                                                         &none
             >;
         };
