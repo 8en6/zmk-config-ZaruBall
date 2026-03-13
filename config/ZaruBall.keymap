@@ -12,7 +12,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 
 &mt {
-    tapping-term-ms = <300>; // デフォルトは200msです。この数値を大きくするとHold判定が長くなります
+    tapping-term-ms = <400>; // デフォルトは200msです。この数値を大きくするとHold判定が長くなります
 };
 
 // -------------------------------------------------------------------------
@@ -112,11 +112,21 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred"; // 短く押した時は確実にキー入力を優先
-            tapping-term-ms = <300>;  // ★ここを好みの長さに設定（デフォルトは200）
+            tapping-term-ms = <400>;  // ★ここを好みの長さに設定（デフォルトは200）
             quick-tap-ms = <200>;     // 連続タップ時のレイヤー暴発防止
             bindings = <&mo>, <&kp>;  // 長押しでレイヤー(&mo)、短押しでキー(&kp)
             
             display-name = "Layer Tap Slow";
+        };
+
+        // ダブルタップ＆ホールドで連続バックスペースになるLayer-Tap
+        lt_bspc: layer_tap_backspace {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>; // 通常の長押し（Hold）判定時間
+            quick-tap-ms = <200>;    // ★ここがダブルタップリピートの受付時間です
+            bindings = <&mo>, <&kp>; // ※もしMod-Tapとして使う場合は <&kp>, <&kp> にしてください
         };
 
         // Customed Hold-Tap for SandS
@@ -272,7 +282,7 @@
 &kp TAB    &kp Q         &kp W       &kp E     &kp R      &kp T                          &kp N4            &kp N5   &kp N6   &kp JP_PLUS                    &kp Y         &kp U   &kp I             &kp O        &kp P     &kp JP_AT
 &kp LALT   &mt LALT A    &kp S       &kp D     &kp F      &kp G      &kp LG(D)           &kp N7            &kp N8   &kp N9   &kp MINUS    &kp JP_YEN        &kp H         &kp J   &lt_slow LOWER K  &lt_slow RAISE L  &mt LALT SEMI  &kp JP_COLON
 &kp LSHFT  &mt LSHFT Z   &kp X       &kp C     &kp V      &kp B      &kp JP_LBRACKET     &lt NAGINATA ESC  &kp N0   &kp DOT  &kp RET      &kp JP_RBRACKET   &kp N         &kp M   &kp COMMA         &kp DOT      &mt LSHFT FSLH  &kp 0x87
-&kp LCTRL  &kp LG(L)  &kp LWIN  &lt NAGINATA INT5  &lt RAISE SPACE  &lt LOWER INT4                                                        &lt MOD BSPC  &lt MOUSE RET                                            &kp JP_CARET
+&kp LCTRL  &kp LG(L)  &kp LWIN  &lt NAGINATA INT5  &lt RAISE SPACE  &lt LOWER INT4                                                        &lt_bspc MOD BSPC  &lt MOUSE RET                                            &kp JP_CARET
             >;
         };
 
