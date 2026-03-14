@@ -12,7 +12,7 @@
 #include <dt-bindings/zmk/input_transform.h>
 
 &mt {
-    tapping-term-ms = <400>; // デフォルトは200msです。この数値を大きくするとHold判定が長くなります
+    tapping-term-ms = <350>; // デフォルトは200msです。この数値を大きくするとHold判定が長くなります
 };
 
 // -------------------------------------------------------------------------
@@ -112,7 +112,7 @@
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             flavor = "tap-preferred"; // 短く押した時は確実にキー入力を優先
-            tapping-term-ms = <400>;  // ★ここを好みの長さに設定（デフォルトは200）
+            tapping-term-ms = <350>;  // ★ここを好みの長さに設定（デフォルトは200）
             quick-tap-ms = <200>;     // 連続タップ時のレイヤー暴発防止
             bindings = <&mo>, <&kp>;  // 長押しでレイヤー(&mo)、短押しでキー(&kp)
             
