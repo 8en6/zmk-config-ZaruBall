@@ -20,9 +20,11 @@
 include:
   - board: seeeduino_xiao_ble
     shield: ZaruBall_left rgbled_adapter
+    # ▼以下の1行を追加します
+    cmake-args: -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE};${GITHUB_WORKSPACE}/modules/custom_battery_typist"
   - board: seeeduino_xiao_ble
     shield: ZaruBall_right rgbled_adapter
     snippet: studio-rpc-usb-uart
-    cmake-args: -DCONFIG_ZMK_STUDIO=y
+    cmake-args: -DCONFIG_ZMK_STUDIO=y -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE};${GITHUB_WORKSPACE}/modules/custom_battery_typist"
   - board: seeeduino_xiao_ble
     shield: settings_reset
