@@ -1,4 +1,4 @@
-# This file generates the GitHub Actions matrix.
+ # This file generates the GitHub Actions matrix.
 # For simple board + shield combinations, add them to the top level board and
 # shield arrays, for more control, add individual board + shield combinations
 # to the `include` property. You can also use the `cmake-args` property to
@@ -20,7 +20,6 @@
 include:
   - board: seeeduino_xiao_ble
     shield: ZaruBall_left rgbled_adapter
-    # ▼以下の1行を追加します
     cmake-args: -DZMK_EXTRA_MODULES="${GITHUB_WORKSPACE};${GITHUB_WORKSPACE}/modules/custom_battery_typist"
   - board: seeeduino_xiao_ble
     shield: ZaruBall_right rgbled_adapter
