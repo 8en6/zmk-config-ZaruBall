@@ -10,8 +10,9 @@
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
 
-#if IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
-#include <zmk/split/bluetooth/central.h>
+/* ▼ 修正1：ZMK Studio対応版の新しいヘッダパスに変更 ▼ */
+#if IS_ENABLED(CONFIG_ZMK_SPLIT)
+#include <zmk/split/central.h>
 #endif
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
@@ -44,7 +45,7 @@ struct char_keycode {
 #define HID_KEY_0 0x27
 #define HID_KEY_SPACE 0x2C
 #define HID_KEY_MINUS 0x2D
-#define HID_KEY_APOSTROPHE 0x34 /* SQT (ユーザーのJISマッピング用) */
+#define HID_KEY_APOSTROPHE 0x34 /* SQT (JISのコロン用) */
 #define HID_KEY_LSHIFT 0xE1
 
 static const struct char_keycode CHAR_MAP[] = {
@@ -61,17 +62,8 @@ static const struct char_keycode CHAR_MAP[] = {
     ['L'] = { .keycode = HID_KEY_L, .shift = true },
     ['R'] = { .keycode = HID_KEY_R, .shift = true },
     [' '] = { .keycode = HID_KEY_SPACE, .shift = false },
-    
-    /* ======== JIS配列対応の変更点 ======== 
-     * ご提示の定義 `#define JP_COLON SQT` に従い、
-     * ':' を出力するために US配列の `SQT` (HID_KEY_APOSTROPHE: 0x34) を Shiftなし で送信します。
-     */
     [':'] = { .keycode = HID_KEY_APOSTROPHE, .shift = false }, 
-    
-    /* JIS配列でも `%` は Shift+5 のため共通 */
     ['%'] = { .keycode = HID_KEY_5, .shift = true }, 
-    
-    /* データ未取得時のハイフン '--' 用 */
     ['-'] = { .keycode = HID_KEY_MINUS, .shift = false },
 };
 
@@ -128,9 +120,10 @@ static int get_central_battery(void) {
 }
 
 static int get_peripheral_battery(void) {
-#if IS_ENABLED(CONFIG_ZMK_SPLIT_BLE_CENTRAL_BATTERY_LEVEL_FETCHING)
+#if IS_ENABLED(CONFIG_ZMK_SPLIT)
     uint8_t level = 0;
-    int rc = zmk_split_get_peripheral_battery_level(0, &level);
+    /* ▼ 修正2：ZMK v0.3の新しい関数名に変更（bluetoothという文字が消えました） ▼ */
+    int rc = zmk_split_central_get_peripheral_battery_level(0, &level);
     return (rc == 0) ? (int)level : -1;
 #else
     return -1;
