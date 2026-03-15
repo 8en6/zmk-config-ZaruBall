@@ -6,6 +6,7 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/pointing.h>
+#include "behavior_battery_type.c"
 //#include <behaviors/naginata.dtsi>
 
 #include <input/processors.dtsi>
@@ -107,7 +108,6 @@
             bindings = <&mt RCTL LANG1>, <&mo RAISE>, <&mo MOUSE>;
         };
 
-        /* ▼ここから追加▼ */
         battery_type: battery_type {
         compatible = "zmk,behavior-battery-type";
         #binding-cells = <0>;
