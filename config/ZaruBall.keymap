@@ -359,11 +359,11 @@
             // 反時計回り: 縮小 (Ctrl + テンキーの-)
             sensor-bindings = <&inc_dec_kp LC(KP_PLUS) LC(KP_MINUS)>;
             bindings = <
-&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4           &trans &trans &trans &trans            &bt BT_CLR_ALL  &none  &none  &none  &none  &none
-&kp TAB    &none      &none         &none         &none         &none                  &trans &trans &trans &trans            &bt BT_CLR      &none  &none  &none  &none  &none
-&kp LALT   &none      &none         &none         &none         &none  &battery_type   &trans &trans &trans &trans   &ind_bat &out OUT_TOG    &none  &none  &none  &none  &none
-&kp LSHFT  &none      &none         &none         &none         &none  &none           &trans &trans &trans &trans   &ind_con &studio_unlock  &none  &none  &none  &none  &none
-&kp LCTRL           &none  &kp LWIN    &trans     &trans    &trans                                                   &trans   &trans                                                  &none
+&trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                   &trans &trans &trans &trans            &bt BT_CLR_ALL  &none  &none  &none  &none  &none
+&kp TAB    &none      &none         &none         &none         &none                          &trans &trans &trans &trans            &bt BT_CLR      &none  &none  &none  &none  &none
+&kp LALT   &none      &none         &none         &none         &none          &battery_type   &trans &trans &trans &trans   &ind_bat &out OUT_TOG    &none  &none  &none  &none  &none
+&kp LSHFT  &none      &none         &none         &none         &none          &none           &trans &trans &trans &trans   &ind_con &studio_unlock  &none  &none  &none  &none  &none
+&kp LCTRL           &none  &kp LWIN    &trans     &trans    &trans                                                           &trans   &trans                                                  &none
             >;
         };
 
