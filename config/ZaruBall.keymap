@@ -275,7 +275,7 @@
             #binding-cells = <0>;
             wait-ms = <30>; // Excelが認識しやすいように少し長めに設定
             bindings = <&kp SLCK>, 
-                       <&kp RIGHT &kp RIGHT &kp RIGHT>, // ここで移動量（列数）を調整
+                       <&kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT &kp RIGHT>, // ここで移動量（列数）を調整
                        <&kp SLCK>;
         };
 
@@ -285,7 +285,7 @@
             #binding-cells = <0>;
             wait-ms = <30>;
             bindings = <&kp SLCK>, 
-                       <&kp LEFT &kp LEFT &kp LEFT>, // ここで移動量（列数）を調整
+                       <&kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT &kp LEFT>, // ここで移動量（列数）を調整
                        <&kp SLCK>;
         };
 
