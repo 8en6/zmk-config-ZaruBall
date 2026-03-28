@@ -54,6 +54,7 @@
 #define ADJUST   5
 #define MOD      6
 #define SCROLL   3
+#define FUNCTION 7
 
 // スクロール量の設定
 #define ZMK_POINTING_DEFAULT_SCRL_VAL 100
@@ -279,11 +280,11 @@
             display-name = "Base";
             sensor-bindings = <&scroll_down_up>;
             bindings = <
-&lt ADJUST ESC    &kp N1  &kp N2      &kp N3    &kp N4     &kp N5                         &kp N1                 &kp N2   &kp N3   &kp BSPC                       &kp N6        &kp N7  &kp N8            &kp N9       &kp N0    &kp MINUS
-&kp TAB    &kp Q         &kp W       &kp E     &kp R      &kp T                           &kp N4                 &kp N5   &kp N6   &kp JP_PLUS                    &kp Y         &kp U   &kp I             &kp O        &kp P     &kp JP_AT
-&kp LALT   &mt_tap LALT A    &kp S       &kp D     &kp F      &kp G      &kp LG(D)        &kp N7                 &kp N8   &kp N9   &kp MINUS    &kp JP_YEN        &kp H         &kp J   &lt_slow LOWER K  &lt_slow RAISE L  &mt_tap LALT SEMI  &kp JP_COLON
-&kp LSHFT  &mt_tap LSHFT Z   &kp X       &kp C     &kp V      &kp B      &kp JP_LBRACKET  &lt_slow ADJUST ESC    &kp N0   &kp DOT  &kp RET      &kp JP_RBRACKET   &kp N         &kp M   &kp COMMA         &kp DOT      &mt_tap LSHFT FSLH  &kp 0x87
-&kp LCTRL  &kp LG(L)  &kp LWIN  &lt NAGINATA INT5  &lt RAISE SPACE  &lt LOWER INT4                                                        &lt_bspc MOD BSPC  &lt MOUSE RET                                            &kp JP_CARET
+&lt ADJUST ESC    &kp N1  &kp N2      &kp N3    &kp N4     &kp N5                         &kp N1            &kp N2   &kp N3   &kp BSPC                       &kp N6        &kp N7  &kp N8            &kp N9       &kp N0    &kp MINUS
+&kp TAB    &kp Q         &kp W       &kp E     &kp R      &kp T                           &kp N4            &kp N5   &kp N6   &kp JP_PLUS                    &kp Y         &kp U   &kp I             &kp O        &kp P     &kp JP_AT
+&kp LALT   &mt_tap LALT A    &kp S       &kp D     &kp F      &kp G      &kp LG(D)        &kp N7            &kp N8   &kp N9   &kp MINUS    &kp JP_YEN        &kp H         &kp J   &lt_slow LOWER K  &lt_slow RAISE L  &mt_tap LALT SEMI  &kp JP_COLON
+&kp LSHFT  &mt_tap LSHFT Z   &kp X       &kp C     &kp V      &kp B      &kp JP_LBRACKET  &lt ADJUST ESC    &kp N0   &kp DOT  &kp RET      &kp JP_RBRACKET   &kp N         &kp M   &kp COMMA         &kp DOT      &mt_tap LSHFT FSLH  &kp 0x87
+&kp LCTRL  &kp LG(L)  &kp LWIN  &lt NAGINATA INT5  &lt RAISE SPACE  &lt LOWER INT4                                                        &lt_bspc FUNCTION BSPC  &lt MOUSE RET                                            &kp JP_CARET
             >;
         };
 
@@ -344,7 +345,7 @@
             bindings = <
 &trans  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                   &kp LS(N8) &kp UP   &kp LS(N9) &kp DEL                     &bt BT_CLR_ALL  &none  &none  &none  &none  &none
 &kp TAB    &none      &none         &none         &none         &none                          &kp LEFT   &kp DOWN &kp RIGHT  &kp LS(JP_COLON)            &bt BT_CLR      &none  &none  &none  &none  &none
-&kp LALT   &none      &none         &none         &none         &none          &battery_type   &none      &kp F2   &none      &kp FSLH           &ind_bat &out OUT_TOG    &none  &none  &none  &none  &none
+&kp LALT   &none      &none         &none         &none         &none          &battery_type   &kp LC(C)  &kp F2   &kp LC(V)  &kp FSLH           &ind_bat &out OUT_TOG    &none  &none  &none  &none  &none
 &kp LSHFT  &none      &none         &none         &none         &none          &none           &none      &kp N0   &kp DOT    &kp TAB            &ind_con &studio_unlock  &none  &none  &none  &none  &none
 &kp LCTRL           &none  &kp LWIN    &trans     &trans    &trans                                                                               &trans   &battery_type                               &none
             >;
@@ -352,6 +353,18 @@
 
         mod_layer {
             display-name = "Mod";
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
+            bindings = <
+&kp ESC    &kp N1  &kp N2    &kp N3  &kp N4  &kp N5           &trans &trans &trans &trans             &kp N6    &kp N7  &kp N8  &kp N9     &kp N0   &kp MINUS
+&kp TAB    &kp F1  &kp F2    &kp F3  &kp F4  &kp F5           &trans &trans &trans &trans             &kp Y     &kp U   &kp I   &kp O      &kp P    &kp EQUAL
+&kp LALT   &kp F6  &kp F7    &kp F8  &kp F9  &kp F10          &trans &trans &trans &trans  &kp INS    &kp LBKT  &kp H   &kp J   &kp K      &kp L    &kp LALT   &kp SQT
+&kp LSHFT  &kp F11 &kp F12   &kp C   &kp V   &kp B            &trans &trans &trans &trans  &kp GRAVE  &kp RBKT  &kp N   &kp M   &kp COMMA  &kp DOT  &kp LSHFT   &lt SCROLL BACKSLASH
+&kp LCTRL             &none  &kp LWIN    &kp TAB     &kp RET    &kp BSPC                                      &trans    &trans                              &trans
+            >;
+        };
+
+        fuction_layer {
+            display-name = "Funcion";
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN>;
             bindings = <
 &kp ESC    &kp N1  &kp N2    &kp N3  &kp N4  &kp N5           &trans &trans &trans &trans             &kp N6    &kp N7  &kp N8  &kp N9     &kp N0   &kp MINUS
